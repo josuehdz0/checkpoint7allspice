@@ -29,7 +29,7 @@ public class RecipesRepository
     string sql = @"
       SELECT
       rec.*,
-      acct.*,
+      acct.*
       FROM recipes rec
       JOIN accounts acct ON rec.creatorId = acct.id;
       ";
