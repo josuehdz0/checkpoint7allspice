@@ -32,6 +32,24 @@ namespace checkpoint7allspice.Controllers
       }
     }
 
+    [HttpDelete("{id}")]
+    [Authorize]
+
+    async public Task<ActionResult<string>> DeleteIngredient(int id)
+    {
+      try
+      {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        string ingredient = _ingredientsService.DeleteIngredient(id, userInfo.Id);
+        return Ok(ingredient);
+
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
 
 
 

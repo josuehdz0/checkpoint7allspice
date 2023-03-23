@@ -21,6 +21,7 @@ public class RecipesService
     Recipe recipe = this.Get(id);
     if (recipe.CreatorId != userId) throw new Exception("You can't delete a recipe you didnt create");
     bool result = _repo.Remove(id);
+    if (!result) throw new Exception($"Couldnt delete recipe with id: {recipe.Id}");
     return $"Deleted {recipe.Title}";
 
   }

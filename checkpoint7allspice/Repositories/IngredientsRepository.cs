@@ -41,6 +41,27 @@ namespace checkpoint7allspice.Repositories
       return ingredients;
     }
 
+    internal Ingredient GetOne(int id)
+    {
+      string sql = @"
+      SELECT
+      *
+      FROM ingredients
+      WHERE id = @id
+      ";
+      Ingredient ingredient = _db.Query<Ingredient>(sql, new { id }).FirstOrDefault();
+      return ingredient;
+    }
+
+    internal bool Remove(int id)
+    {
+      string sql = @"
+      DELETE FROM ingredients WHERE id =@id
+      ";
+      int rows = _db.Execute(sql, new { id });
+      return rows == 1;
+    }
+
 
     // internal List<Ingredient> FindAll()
     // {
