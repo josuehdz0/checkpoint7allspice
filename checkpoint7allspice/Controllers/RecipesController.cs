@@ -31,6 +31,21 @@ public class RecipesController : ControllerBase
     }
   }
 
+  [HttpGet("{id}")]
+
+  public ActionResult<Recipe> Find(int id)
+  {
+    try
+    {
+      Recipe recipe = _recipesService.Get(id);
+      return Ok(recipe);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
 
   [HttpPost]
   [Authorize]
@@ -43,6 +58,24 @@ public class RecipesController : ControllerBase
       recipeData.CreatorId = userInfo.Id;
       Recipe recipe = _recipesService.CreateRecipe(recipeData);
       recipe.Creator = userInfo;
+      return Ok(recipe);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
+  [HttpPut("{id}")]
+  [Authorize]
+
+  async public Task<ActionResult<Recipe>> EditRecipe(int id, [FromBody] Recipe updateData)
+  {
+    try
+    {
+      Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+      updateData.Id = id;
+      Recipe recipe = _recipesService.EditRecipe(updateData);
       return Ok(recipe);
     }
     catch (Exception e)
