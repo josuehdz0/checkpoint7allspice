@@ -16,6 +16,15 @@ public class RecipesService
     return recipe;
   }
 
+  internal string DeleteRecipe(int id, string userId)
+  {
+    Recipe recipe = this.Get(id);
+    if (recipe.CreatorId != userId) throw new Exception("You can't delete a recipe you didnt create");
+    bool result = _repo.Remove(id);
+    return $"Deleted {recipe.Title}";
+
+  }
+
   internal Recipe EditRecipe(Recipe updateData)
   {
     Recipe original = this.Get(updateData.Id);
