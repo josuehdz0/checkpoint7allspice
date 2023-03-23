@@ -18,3 +18,13 @@ CREATE TABLE recipes(
 ) default charset utf8 COMMENT '';
 
 
+CREATE TABLE ingredients(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  quantity VARCHAR(255) NOT NULL,
+  recipeId INT NOT NULL,
+
+  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE 
+) default charset utf8 COMMENT '';
+
+
