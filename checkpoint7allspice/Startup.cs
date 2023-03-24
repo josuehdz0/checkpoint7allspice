@@ -38,6 +38,11 @@ public class Startup
     services.AddScoped<RecipesService>();
     services.AddScoped<IngredientsRepository>();
     services.AddScoped<IngredientsService>();
+    services.AddScoped<FavoritesRepository>();
+    services.AddScoped<FavoritesService>();
+
+
+
 
 
   }
