@@ -5,12 +5,14 @@ namespace checkpoint7allspice.Controllers;
 public class AccountController : ControllerBase
 {
   private readonly AccountService _accountService;
-  private readonly Auth0Provider _auth0Provider;
+  private readonly FavoritesService _favoritesService;
+  private readonly Auth0Provider _auth;
 
-  public AccountController(AccountService accountService, Auth0Provider auth0Provider)
+  public AccountController(AccountService accountService, Auth0Provider auth0Provider, FavoritesService favoritesService)
   {
     _accountService = accountService;
-    _auth0Provider = auth0Provider;
+    _favoritesService = favoritesService;
+    _auth = auth0Provider;
   }
 
   [HttpGet]
@@ -19,8 +21,25 @@ public class AccountController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
       return Ok(_accountService.GetOrCreateProfile(userInfo));
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
+  [HttpGet("favorites")]
+  [Authorize]
+
+  public async Task<ActionResult<List<FavoritedRecipe>>> GetMyFavoritedRecipes()
+  {
+    try
+    {
+      Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+      List<FavoritedRecipe> favoritedRecipes = _favoritesService.GetMyFavoritedRecipes(userInfo.Id);
+      return Ok(favoritedRecipes);
     }
     catch (Exception e)
     {
