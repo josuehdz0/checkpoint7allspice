@@ -1,14 +1,19 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img
-        src="https://bcw.blob.core.windows.net/public/img/8600856373152463"
-        alt="CodeWorks Logo"
-        class="rounded-circle"
-      >
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-10 foodcover ">
+      </div>
+    </div>
+    <div class="row justify-content-center ">
+      <div class="col-md-6 d-flex justify-content-center fixed-bottom sticky-md-top py-3 overflow">
+
+        <div class="btn-group btn-group-lg shadow-md-lg shadow" role="group" aria-label="Large button group">
+          <button type="button" class="btn btn-light">Home</button>
+          <button type="button" class="btn btn-light">My Recipes</button>
+          <button type="button" class="btn btn-light">Favorites</button>
+        </div>
+
+      </div>
     </div>
   </div>
 </template>
@@ -39,6 +44,31 @@ export default {
       object-fit: contain;
       object-position: center;
     }
+  }
+}
+
+.foodcover {
+  background-image: url(foodcover1.png);
+  height: 30vh;
+  // width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.overflow {
+  translate: 0% 0%;
+}
+
+.coverimage {
+  height: 30vh;
+  width: 100%;
+  object-fit: cover;
+  top: vh;
+}
+
+@media screen and (min-width: 768px) {
+  .overflow {
+    translate: 0% -50%;
   }
 }
 </style>
