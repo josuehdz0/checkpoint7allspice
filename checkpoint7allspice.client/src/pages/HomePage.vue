@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-evenly">
       <div class="col-5 col-md-4">
         <div class="row justify-content-between">
           <div class="col-4 text-center">Type</div>
@@ -34,11 +34,32 @@
 </template>
 
 <script>
+import { ref, onMounted, computed } from "vue";
+import { recipesService } from "../services/RecipesService.js";
+import Pop from "../utils/Pop.js";
+
 export default {
   setup() {
-    return {}
+    // const filterType = ref('')
+    async function getAllRecipes() {
+      try {
+        await recipesService.getAllRecipes();
+      } catch (error) {
+        Pop.error(error, "Getting all Recipes")
+      }
+    }
+
+    onMounted(() => {
+      getAllRecipes();
+    })
+    return {
+
+      recipes: computed(() => AppState.recipes)
+    }
   }
 }
+
+
 </script>
 
 <style scoped lang="scss">
