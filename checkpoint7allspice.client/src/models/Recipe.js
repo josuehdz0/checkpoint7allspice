@@ -7,5 +7,15 @@ export class Recipe {
     this.img = data.img
     this.category = data.category
     this.creatorId = data.creatorId
+    this.favoriteId = data.favoriteId
   }
+
+}
+export class FavoriteRecipe extends Recipe {
+  constructor(data){
+    super(data.recipe)
+      this.favoriteId = data.favoriteId
+  
+  }
+
 }
