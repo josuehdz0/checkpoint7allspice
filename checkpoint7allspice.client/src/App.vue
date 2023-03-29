@@ -37,4 +37,8 @@ footer {
   place-content: center;
   height: 32px;
 }
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
 </style>

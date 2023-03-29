@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6 d-flex flex-column justify-content-center fixed-bottom sticky-md-top py-3 overflow">
 
-        <div class="btn-group btn-group-lg shadow-md-lg shadow " role="group" aria-label="Large button group">
+        <div class="btn-group btn-group-lg shadow-md-lg shadow-lg " role="group" aria-label="Large button group">
           <button type="button" class="btn btn-light">Home</button>
           <button type="button" class="btn btn-light">My Recipes</button>
           <button type="button" class="btn btn-light">Favorites</button>
