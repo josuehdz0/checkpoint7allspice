@@ -5,9 +5,9 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="col-md-6 d-flex justify-content-center fixed-bottom sticky-md-top py-3 overflow">
+      <div class="col-md-6 d-flex flex-column justify-content-center fixed-bottom sticky-md-top py-3 overflow">
 
-        <div class="btn-group btn-group-lg shadow-md-lg shadow" role="group" aria-label="Large button group">
+        <div class="btn-group btn-group-lg shadow-md-lg shadow " role="group" aria-label="Large button group">
           <button type="button" class="btn btn-light">Home</button>
           <button type="button" class="btn btn-light">My Recipes</button>
           <button type="button" class="btn btn-light">Favorites</button>
@@ -17,18 +17,12 @@
     </div>
 
     <div class="row justify-content-evenly otheroverflow">
-      <div v-for="r in recipes" :key="r.id" class="col-5 col-md-4 p-0 mt-2  d-flex justify-content-center cardsize">
+      <div v-for="r in recipes" :key="r.id"
+        class="col-5 col-md-4 p-0 mt-2 mt-md-4  d-flex justify-content-center cardsize">
+        <!-- NOTE RECIPE CARD HERE! -->
         <RecipeCard :recipe="r" />
-        <!-- <div class="row justify-content-between">
-          <div class="col-4 text-center">Type</div>
-          <div class="col-4 text-center">Like</div>
-        </div>
-        <div class="row"> Name</div>
-        <div class="row"> Descriptions</div> -->
       </div>
-      <div class="col-5 col-md-4"> box 2</div>
-      <!-- <div class="col-5 col-md-4"> box 3</div>
-      <div class="col-5 col-md-4"> box 4</div> -->
+
 
     </div>
   </div>
