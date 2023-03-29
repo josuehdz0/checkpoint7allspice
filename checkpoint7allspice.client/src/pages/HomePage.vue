@@ -15,6 +15,21 @@
 
       </div>
     </div>
+
+    <div class="row justify-content-center">
+      <div class="col-5 col-md-4">
+        <div class="row justify-content-between">
+          <div class="col-4 text-center">Type</div>
+          <div class="col-4 text-center">Like</div>
+        </div>
+        <div class="row"> Name</div>
+        <div class="row"> Descriptions</div>
+      </div>
+      <div class="col-5 col-md-4"> box 2</div>
+      <!-- <div class="col-5 col-md-4"> box 3</div>
+      <div class="col-5 col-md-4"> box 4</div> -->
+
+    </div>
   </div>
 </template>
 
