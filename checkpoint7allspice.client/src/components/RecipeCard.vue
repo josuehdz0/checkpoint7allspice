@@ -17,17 +17,25 @@
           {{ recipe.title }}
         </b>
       </div>
-      <!-- <div class="col-12 ">
-        {{ recipe.description }}
-      </div> -->
+
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#r-${recipe.id}`">
+        {{ recipe.id }}
+      </button>
+
 
     </div>
 
   </div>
+
+
+  <Modal :id="`r-${recipe.id}`">
+    {{ recipe.title }}
+  </Modal>
 </template>
 
 
 <script>
+// import { Modal } from "../components/Modal.vue";
 import { Recipe } from "../models/Recipe.js";
 
 export default {
@@ -36,8 +44,10 @@ export default {
   },
   setup() {
     return {}
-  }
+  },
+  // components: { Modal }
 }
+
 </script>
 
 

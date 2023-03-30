@@ -8,16 +8,16 @@
       <div class="col-md-6 d-flex flex-column justify-content-center fixed-bottom sticky-md-top py-3 overflow">
 
         <div class="btn-group btn-group-lg shadow-md-lg shadow-lg " role="group" aria-label="Large button group">
-          <button type="button" class="btn btn-light">Home</button>
-          <button type="button" class="btn btn-light">My Recipes</button>
-          <button type="button" class="btn btn-light">Favorites</button>
+          <button @click="getAll" type="button" class="btn btn-light">Home</button>
+          <button @click="getMyRecipes" type="button" class="btn btn-light">My Recipes</button>
+          <button @click="filterFavorites" type="button" class="btn btn-light">Favorites</button>
         </div>
 
       </div>
     </div>
 
     <div class="row justify-content-evenly otheroverflow">
-      <div v-for="r in recipes" :key="r.id"
+      <div @click="Modal" v-for="r in recipes" :key="r.id"
         class="col-5 col-md-4 p-0 mt-2 mt-md-4  d-flex justify-content-center cardsize">
         <!-- NOTE RECIPE CARD HERE! -->
         <RecipeCard :recipe="r" />
@@ -26,10 +26,15 @@
 
     </div>
   </div>
+
+  <!-- <Modal id="exampleModal" modal-title="Recipe">
+
+  </Modal> -->
 </template>
 
 <script>
 import { ref, onMounted, computed } from "vue";
+// import { Modal } from "../components/Modal.vue";
 import { AppState } from "../AppState.js";
 import RecipeCard from "../components/RecipeCard.vue";
 import { recipesService } from "../services/RecipesService.js";
@@ -50,7 +55,33 @@ export default {
       getAllRecipes();
     });
     return {
-      recipes: computed(() => AppState.recipes)
+      recipes: computed(() => AppState.recipes),
+
+      async filterFavorites() {
+        try {
+          await recipesService.getFavorites();
+        } catch (error) {
+          Pop.error(error, "Getting Favorite Recipes")
+        }
+      },
+
+      async getAll() {
+        try {
+          await recipesService.getAllRecipes();
+        }
+        catch (error) {
+          Pop.error(error, "Getting all Recipes");
+        }
+      },
+      async getMyRecipes() {
+        try {
+          await recipesService.getMyRecipes();
+        }
+        catch (error) {
+          Pop.error(error, "Getting all Recipes");
+        }
+      }
+
     };
   },
   components: { RecipeCard }
