@@ -1,6 +1,6 @@
 <template>
   <div class=" cardstuff d-flex flex-column justify-content-between img-fluid rounded"
-    :style="{ backgroundImage: `url(${recipe.img})` }">
+    :style="{ backgroundImage: `url(${recipe.img})` }" data-bs-toggle="modal" :data-bs-target="`#r-${recipe.id}`">
 
 
     <div class="row justify-content-between mx-1 mt-1">
@@ -18,15 +18,14 @@
         </b>
       </div>
 
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#r-${recipe.id}`">
+      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#r-${recipe.id}`">
         {{ recipe.id }}
-      </button>
+      </button> -->
 
 
     </div>
 
   </div>
-
 
   <Modal :id="`r-${recipe.id}`">
     {{ recipe.title }}
